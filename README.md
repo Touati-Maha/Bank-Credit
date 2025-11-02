@@ -56,9 +56,42 @@ helm-deploy/
    Ces fichiers sont communs à tous les clusters.
 
 ---
+## 🧩 Exemple de configuration
 
+### 🧱 `roles/helm_deploy/defaults/main.yml`
+
+```yaml
+helm_repositories:
+  - { name: grafana, url: "https://grafana.github.io/helm-charts" }
+  - { name: jenkins, url: "https://charts.jenkins.io" }
+  - { name: prometheus, url: "https://prometheus-community.github.io/helm-charts" }
+
+helm_charts:
+  - name: grafana
+    chart: grafana/grafana
+    chart_version: "7.3.10"
+    namespace: monitoring
+    create_namespace: true
+    values_template: "values-grafana.yaml.j2"
+
+  - name: jenkins
+    chart: jenkins/jenkins
+    chart_version: "5.4.0"
+    namespace: cicd
+    create_namespace: true
+    values_template: "values-jenkins.yaml.j2"
+
+  - name: prometheus
+    chart: prometheus-community/prometheus
+    chart_version: "25.12.0"
+    namespace: monitoring
+    create_namespace: true
+    values_template: "values-prometheus.yaml.j2"
+
+```
 ### 📘 En résumé :
 
 - Les **inventaires** identifient le cluster.  
 - Les **playbooks** définissent quoi faire (installer ou désinstaller).  
 - Le **rôle** exécute les actions Helm nécessaires.
+
