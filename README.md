@@ -42,7 +42,8 @@ L’objectif est de disposer d’une **source de vérité unique** pour les char
 │           └── main.yml         # (vide pour l’instant, réservé pour des vars futures)
 
 
-```## 2. Description des principaux composants
+```
+## 2. Description des principaux composants
 
 Cette section détaille la structure interne du rôle `helm_deploy` et la logique utilisée pour la gestion des charts Helm.
 
